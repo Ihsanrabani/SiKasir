@@ -1,0 +1,59 @@
+GET http://localhost:5555/products
+
+###
+GET http://localhost:5555/products/1
+
+###
+GET http://localhost:5555/products/jenis/Minuman
+
+###
+POST http://localhost:5555/products
+Content-Type: application/json
+
+{
+    "nama": "Mie Goreng",
+    "jenis": "Makanan",
+    "harga": 10000,
+    "image": "/public/image/mie_goreng.png"
+}
+
+###
+PATCH Http://localhost:5555/products/1
+Content-Type: application/json
+    
+{
+    "nama": "Mie Goreng",
+    "jenis": "Minuman",
+    "harga": 12000,
+    "image": "/public/image/mie_goreng2.png"
+}
+
+###
+DELETE Http://localhost:5555/products/2
+
+# ==============================W
+
+###
+GET http://localhost:5555/order
+
+###
+POST http://localhost:5555/order
+Content-Type: application/json
+
+{
+    "table_number": "1A",
+    "orderItems": [
+        {
+            "product_id": 2,
+            "nama": "Tesaja",
+            "harga": 5000,
+            "qty": 1
+        },
+        {
+            "product_id": 3,
+            "nama": "Zombie Jus",
+            "harga": 10000000,
+            "qty": 2
+        }
+    ]
+}

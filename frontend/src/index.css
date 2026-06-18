@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    background: #FCFCFC;
+}
+
+.montserrat-regular {
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.montserrat-medium {
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.montserrat-semibold {
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.montserrat-bold {
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.text-md2 {
+  font-size: 1.110rem; /* 18px */
+  line-height: 1.75rem; /* 28px */
+}
+
+.text-SKSBLUE {
+    color: #10B0A2;
+}
+
+.bg-SKSBLUE {
+    background-color: #10B0A2;
+}
+
+:hover.bg-SKSBLUE {
+    background-color: #10B0A2;
+}
+
+.text-gray-sh {
+    color: #A3A3A3;
+}
+
+.bg-gray-sh {
+    background-color: #A3A3A3;
+}
+
+.border-SKSBLUE-1 {
+    border: #10B0A2;
+    border-radius:7px;
+    border-width: 2px;
+    border-style: solid;
+}
+
+.border-SKSBLUE--5 {
+    border: #10B0A2;
+    border-radius:7px;
+    border-width: 1px;
+    border-style: solid;
+}
+
+.border-divider-b {
+    border-bottom: #a7a7a7b4;
+    border-top: transparent;
+    border-right: transparent;
+    border-left: transparent;
+    border-width: 2px;
+    border-style: solid;
+}
