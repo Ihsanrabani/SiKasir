@@ -53,7 +53,7 @@ function AddProduct() {
             formData.append("harga", harga);
             formData.append("image", image);
 
-            await axios.post("http://localhost:5555/products", formData, {
+            await axios.post(`${import.meta.env.VITE_API_URL}/products`, formData, {
                 headers: {
                     "Content-Type": "multipart/form-data"
                 }
