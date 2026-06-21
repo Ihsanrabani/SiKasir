@@ -61,7 +61,7 @@ function AddProduct() {
             navigate("/list-product")
         } catch (error) {
             errorNotify("Produk Tidak Berhasil Ditambahkan")
-            console.log(error)
+            console.log("INI ERROR => "+error)
         } finally {
             setIsLoading(false)
         }
