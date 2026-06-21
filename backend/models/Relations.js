@@ -1,4 +1,4 @@
-import Orders from "./ordersModel.js";
+import Orders from "./OrdersModel.js";
 import Order_items from "./Order-itemsModel.js";
 
 Orders.hasMany(Order_items, {
