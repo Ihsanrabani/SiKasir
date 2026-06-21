@@ -62,6 +62,7 @@ function AddProduct() {
         } catch (error) {
             errorNotify("Produk Tidak Berhasil Ditambahkan")
             console.log("INI ERROR => "+error)
+            console.log(`INI API => ${import.meta.env.VITE_API_URL}`)
         } finally {
             setIsLoading(false)
         }
