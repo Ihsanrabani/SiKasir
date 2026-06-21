@@ -53,7 +53,7 @@ function AddOrder() {
     const getProducts = async () => {
         try {
             setIsLoading(true)
-            const response = await axios.get('http://localhost:5555/products')
+            const response = await axios.get(`${import.meta.env.VITE_API_URL}/products`)
             setProducts(response.data)
         } catch (error) {
             console.log("LAPOR OWNER WEBSITE!: " + error)
@@ -65,7 +65,7 @@ function AddOrder() {
     const getProductByJenis = async (jenis) => {
         try {
             setIsLoading(true)
-            const response = await axios.get(`http://localhost:5555/products/jenis/${jenis}`);
+            const response = await axios.get(`${import.meta.env.VITE_API_URL}/products/jenis/${jenis}`);
             console.log(response.data)
             setProducts(response.data)
         } catch (error) {
@@ -150,7 +150,7 @@ function AddOrder() {
             successNotify("Order Berhasil Dibuat!")
             setOpen(false)
             setIsLoading(true)
-            await axios.post("http://localhost:5555/order", {
+            await axios.post(`${import.meta.env.VITE_API_URL}/order`, {
                 table_number: activeMeja,
                 orderItems: orderItemsData.orderItems
             });

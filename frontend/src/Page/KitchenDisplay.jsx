@@ -40,7 +40,7 @@ function KitchenDisplay() {
 
     const getOrders = async () => {
         try {
-            const datas = await axios.get('http://localhost:5555/order')
+            const datas = await axios.get(`${ import.meta.env.VITE_API_URL}/order`)
             setOrderDatas(datas.data)
         } catch (error) {
             console.log(error)
@@ -51,7 +51,7 @@ function KitchenDisplay() {
         try {
             setIsLoading(true)
             successNotify("Order Selesai!")
-            await axios.delete(`http://localhost:5555/order/${id}`)
+            await axios.delete(`${import.meta.env.VITE_API_URL}/order/${id}`)
         } catch (error) {
             console.log(error)
         } finally {

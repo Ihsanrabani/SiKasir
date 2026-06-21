@@ -16,7 +16,7 @@ function ListProduct() {
 
     const getProducts = async () => {
         try {
-            const response = await axios.get('http://localhost:5555/products')
+            const response = await axios.get(`${import.meta.env.VITE_API_URL}/products`)
             setProducts(response.data)
         } catch (error) {
             console.log("LAPOR OWNER WEBSITE!: " + error)
@@ -29,16 +29,16 @@ function ListProduct() {
 
     const deleteProduct = async (id) => {
         try {
-            await axios.delete(`http://localhost:5555/products/${id}`);
+            await axios.delete(`${import.meta.env.VITE_API_URL}/products/${id}`);
             alert("Produk Berhasil Dihapus")
         } catch (error) {
-            console.log("heo"+error)   
+            console.log("LAPOR OWNER WEBSITE!: "+error)   
         }
     }
 
     const getProductByJenis = async (jenis) => {
         try {
-            const response = await axios.get(`http://localhost:5555/products/jenis/${jenis}`);
+            const response = await axios.get(`${import.meta.env.VITE_API_URL}/products/jenis/${jenis}`);
             console.log(response.data)
             setProducts(response.data)
         } catch (error) {
