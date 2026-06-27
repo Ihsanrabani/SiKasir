@@ -27,8 +27,13 @@
 **Database**
 - MySQL
 
+# Deployment
+- Front-End: Vercel(Free Tier)
+- Back-End: Railway(Free Tier)
+- Database: Filess.io(Free Tier)
+
 # Live Demo
-**https://sikasir.tes**
+**https://si-kasir-sanspace.vercel.app/**
 
 # Version
-V1.SKSR
+V1.1.SKSR
