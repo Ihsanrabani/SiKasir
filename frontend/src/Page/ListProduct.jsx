@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 // COMPONENTS
 import Navbar from '../components/Navbar';
+import EditProduct from './EditProduct';
 
 
 function ListProduct() {
@@ -16,10 +17,14 @@ function ListProduct() {
 
     const getProducts = async () => {
         try {
+            setIsLoading(true)
             const response = await axios.get(`${import.meta.env.VITE_API_URL}/products`)
+            console.log(response.data)
             setProducts(response.data)
         } catch (error) {
             console.log("LAPOR OWNER WEBSITE!: " + error)
+        } finally {
+            setIsLoading(false)
         }
     }
 
@@ -49,6 +54,8 @@ function ListProduct() {
     const redirectAP = () => {
         navigate("/add-product")
     }
+
+    
 
     return (
         <>
@@ -132,9 +139,16 @@ function ListProduct() {
                                     <div className='flex flex-col border border-[#10B0A2] border-x-0 border-b-0 p-1 '>
                                         <span className='montserrat-medium text-sm'>{product.nama}</span>
                                         <span className='montserrat-medium text-xs text-gray-sh'>Rp {product.harga}</span>
+                                        {product.stok > 0 && (
+                                            <span className='montserrat-medium text-xs mt-2'>Stok: {product.stok}</span>
+                                        )}
+                                        {product.stok <= 0 && (
+                                            <span className='montserrat-medium text-xs mt-2'>Stok: <span className='text-red-500'>Habis</span></span>
+                                        )}
                                     </div>
-                                    <div className='p-2'>
+                                    <div className='p-2 flex flex-col gap-2'>
                                         <button className='w-full text-white bg-red-500 p-1 rounded-md' onClick={() => {deleteProduct(product.id)}}>HAPUS PRODUK</button>
+                                        <button className='w-full text-white bg-blue-500 p-1 rounded-md' onClick={() => { navigate(`/edit-product/${product.id}`) }}>EDIT PRODUK</button>
                                     </div>
                                 </div>
                             ))

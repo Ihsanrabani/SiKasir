@@ -54,6 +54,7 @@ function AddOrder() {
         try {
             setIsLoading(true)
             const response = await axios.get(`${import.meta.env.VITE_API_URL}/products`)
+            console.log(response.data)
             setProducts(response.data)
         } catch (error) {
             console.log("LAPOR OWNER WEBSITE!: " + error)
@@ -95,6 +96,7 @@ function AddOrder() {
                     nama: data.nama,
                     jenis: data.jenis,
                     harga: data.harga,
+                    stok: data.stok,
                     qty: 1
                 }
             ];
@@ -142,24 +144,35 @@ function AddOrder() {
                 product_id: data.id,
                 nama: data.nama,
                 harga: data.harga,
+                stok: data.stok,
                 qty: data.qty
             }))
         }
+
 
         try {
             successNotify("Order Berhasil Dibuat!")
             setOpen(false)
             setIsLoading(true)
+
+            orderItemsData.orderItems.forEach(item => {
+                const newStok = item.stok - item.qty
+                axios.patch(`${import.meta.env.VITE_API_URL}/products/${item.product_id}`, {
+                    stok: newStok
+                })
+            });
+
             await axios.post(`${import.meta.env.VITE_API_URL}/order`, {
                 table_number: activeMeja,
                 orderItems: orderItemsData.orderItems
             });
 
-            setItems([]);   
+            getProducts();
+            setItems([]); 
         }
         catch (error) {
             errorNotify("Order Tidak Berhasil Dibuat!")
-            console.log("cihy" + error)
+            console.log("cihy " + error)
         } finally {
             setIsLoading(false)
         }
@@ -295,7 +308,7 @@ function AddOrder() {
                                     <p className="text-center text-gray-500">Produk belum tersedia</p>
                                 ) : (
 
-                                    products.map((product) => (
+                                    products.map((product) => (         
                                         <div onClick={() => {addItems(product)}} key={product.id} className='flex flex-col border border-[#10B0A2] w-40 rounded-t-md'>
                                             <div className='flex justify-center p-2'>
                                                 <img src={product.image} alt="" className='w-36' />
@@ -303,6 +316,12 @@ function AddOrder() {
                                             <div className='flex flex-col border border-[#10B0A2] border-x-0 border-b-0 p-1 '>
                                                 <span className='montserrat-medium text-sm'>{product.nama}</span>
                                                 <span className='montserrat-medium text-xs text-gray-sh'>{toRupiah(product.harga, { floatingPoint: 0 })}</span>
+                                                {product.stok > 0 && (
+                                                    <span className='montserrat-medium text-xs mt-2'>Stok: {product.stok}</span>
+                                                )}
+                                                {product.stok <= 0 && (
+                                                    <span className='montserrat-medium text-xs mt-2'>Stok: <span className='text-red-500'>Habis</span></span>                 
+                                                )}
                                             </div>
                                         </div>
                                     ))
